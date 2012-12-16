@@ -1,4 +1,4 @@
-// Blocks.ParentView
+// Jocks.Blocks.ParentView
 // ---------------------
 
 // The base componenet is simply a backbone view
@@ -7,17 +7,17 @@
 // attachted to the element when render() is called
 // It also provides a buildcomponent method in which
 // the element is built before rendering
-Blocks.ParentView = Backbone.View.extend({
-  _configure: _configure,
+Blocks.ParentView = Backbone.Marionette.ItemView.extend({
+  _configure: Jocks.Methods._configure,
 
-  constructor: constructor(Backbone.View),
+  constructor: Jocks.Methods.constructor(Backbone.Marionette.ItemView),
 
   includeOptions: ["id", "children"],
 
   getDefaultOptions: function() {
     return {
       children: [],
-      elements: []
+      elements: {}
     };
   },
 
@@ -46,9 +46,6 @@ Blocks.ParentView = Backbone.View.extend({
   render: function() {
     // Trigger before:render event
     this.trigger("before:render");
-
-    // Clean the view
-    this.elements.childContainer.empty();
 
     // Render children
     _.each(this.children, function(child) {

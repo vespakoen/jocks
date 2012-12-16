@@ -19,6 +19,8 @@ function(Jocks) {
 
   //= ../../jocks/blocks/layout.js
 
+  //= ../../jocks/blocks/view.js
+
   Jocks.Blocks = Blocks;
 
   // Return the module for AMD compliance.

@@ -4,12 +4,14 @@ define([], function() {
   var Jocks = {
   	Mobile: {},
   	Web: {},
-  	Maps: {}
+  	Maps: {},
+  	Methods: {},
+  	Blocks: {}
   };
 
   //= ../jocks/common.js
 
   // Return the module for AMD compliance.
-  return Ratchet;
+  return Jocks;
 
 });

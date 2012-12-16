@@ -15,8 +15,6 @@ function(Jocks) {
 
   //= ../../../jocks/mobile/ratchet/window.js
 
-  //= ../../../jocks/mobile/ratchet/page.js
-
   // ---------------------
   // HEADER RELATED BLOCKS
   // ---------------------
@@ -64,6 +62,12 @@ function(Jocks) {
   //= ../../../jocks/mobile/ratchet/chevron.js
 
   //= ../../../jocks/mobile/ratchet/count.js
+
+  // -----
+  // ICONS
+  // -----
+
+  //= ../../../jocks/mobile/ratchet/fonticon.js
 
   Jocks.Mobile.Ratchet = Ratchet;
 

@@ -1,18 +1,18 @@
-// Jocks.Blocks.CompositeView
+// Jocks.Blocks.View
 // ---------------------
 
-// The CompositeView is an extension of Marionette's
-// CompositeView with a small modification.
+// The View is an extension of Marionette's
+// View with a small modification.
 // This modification adds the beforeConstructor
 // and afterInitialize methods to our view and
 // adds the possibility to define what options
 // should be added to the instance of the view
-Blocks.CompositeView = Backbone.Marionette.CompositeView.extend({
+Blocks.View = Backbone.Marionette.View.extend({
   includeOptions: ["id"],
 
   _configure: Jocks.Methods._configure,
 
-  constructor: Jocks.Methods.constructor(Backbone.Marionette.CompositeView),
+  constructor: Jocks.Methods.constructor(Backbone.Marionette.View),
 
   getDefaultOptions: function() {
     return {
@@ -36,5 +36,12 @@ Blocks.CompositeView = Backbone.Marionette.CompositeView.extend({
 
   buildComponent: function() {
     this.addElement('childContainer', this.el);
+  },
+
+  render: function() {
+  	// Provide some consistency
+  	this.triggerMethod("before:render", this);
+  	this.triggerMethod("render", this);
+  	return this;
   }
 });

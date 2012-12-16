@@ -1,21 +1,19 @@
-Ratchet.TitleBar = Jocks.ParentView.extend({
+Ratchet.TitleBar = Jocks.Blocks.ParentView.extend({
+  tagName: "header",
+
+  className: "bar-title",
+
   includeOptions: ["backButton", "backButtonTitle", "title", "children"],
 
   getDefaultOptions: function() {
     return {
-      children: []
+      children: [],
+      elements: {}
     };
   },
 
   // Build the component
   buildComponent: function() {
-    var elements = this.elements = {};
-
-    // Create the container element
-    var childContainer = this.makeElement('childContainer', 'header', {
-      "class": "bar-title"
-    });
-
     if(this.backButtonTitle) {
       // We only got a title for the back button,
       // let's create the button ourselves
@@ -25,15 +23,15 @@ Ratchet.TitleBar = Jocks.ParentView.extend({
           href: "javascript:window.history.back();"
         }
       }).render().el;
-      var backButton = this.backButton = this.addElement('backButton', backButtonEl);
-      // Append the back button to the childContainer
-      childContainer.appendChild(backButton);
+      this.backButton = this.addElement('backButton', backButtonEl);
+      // Append the back button to the this.el
+      this.el.appendChild(backButtonEl);
     }
     else if(this.backButton) {
       var backButtonEl = this.backButton.render().el;
-      var backButton = this.addElement('backButton', backButtonEl);
-      // Append back button to the childContainer
-      childContainer.appendChild(backButton);
+      this.addElement('backButton', backButtonEl);
+      // Append back button to the this.el
+      this.el.appendChild(backButtonEl);
     }
 
     if(this.title) {
@@ -42,19 +40,13 @@ Ratchet.TitleBar = Jocks.ParentView.extend({
         "class": "title"
       }, this.title);
 
-      // Append the title to the childContainer
-      childContainer.appendChild(title);
+      // Append the title to the this.el
+      this.el.appendChild(title);
     }
 
-    // Set the element
-    this.setElement(childContainer);
-    
-    return this;
+    this.addElement("childContainer", this.el);
   },
 
-  // Post rendering methods
-  // ------
-  
   // Change the header's title
   setTitle: function(value) {
     this.title = value;

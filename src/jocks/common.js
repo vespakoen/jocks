@@ -1,4 +1,4 @@
-function constructor(parent) {
+Jocks.Methods.constructor = function(parent) {
   return function() {
     if(typeof this.beforeConstructor !== "undefined") {
       this.beforeConstructor();
@@ -6,13 +6,13 @@ function constructor(parent) {
 
     parent.prototype.constructor.apply(this, arguments);
 
-    if(typeof this.afterConstuctor !== "undefined") {
-      this.afterConstuctor();
+    if(typeof this.afterInitialize !== "undefined") {
+      this.afterInitialize();
     }
   };
 }
 
-function _configure(options) {
+Jocks.Methods._configure = function(options) {
   // Make sure the stuff we are going to combine are at least an empty object
   var defaultOptions = this.getDefaultOptions ? this.getDefaultOptions() : {};
   this.options = this.options || {};
@@ -23,7 +23,7 @@ function _configure(options) {
 
   _.each(options, function(value, key) {
     var includeOptions = this.includeOptions || [];
-    includeOptions = includeOptions.concat('model', 'collection');
+    includeOptions = _.union(includeOptions.concat('model', 'collection'), _.keys(defaultOptions));
     if(_.contains(includeOptions, key)) {
       this[key] = value;
     }
